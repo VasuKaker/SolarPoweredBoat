@@ -1,0 +1,3 @@
+design.py: Code to design the boat given parameters
+backtest.py: Code to simulate the boat on the Charles River
+Boston_GHI.csv: Global Horizontal Irradiance data for 2023, hourly level resolution

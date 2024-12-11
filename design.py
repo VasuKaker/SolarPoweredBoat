@@ -12,7 +12,7 @@ def main(boat_speed, hrs_sun, battery_hours, solar=True):
     pi = math.pi
     viscosity_water = 10**(-6) ### m^2 / s
     battery_specific_energy = 183 ### Wh / kg
-    mass_payload = 200
+    mass_payload = 0
     
     ### VARIABLES
     L = 10*opti.variable()
@@ -146,7 +146,7 @@ def main(boat_speed, hrs_sun, battery_hours, solar=True):
     # print("xs is: ", xs)
     print_title = lambda s: print("\n********** %s **********" % s.upper())
 
-    vars_of_interest = ["L", "W", "B", "Re_num", "S_hull_wetted", "x", "hull_perimeter", "hull_face_area", "buoyant_force_mass", "hull_face_area", "mass_total", "battery_mass", "starlink_mass", "power", "F_drag", "C_f", "energy_req", "solar_area", "Fr_num", "battery_energy"]
+    vars_of_interest = ["L", "W", "B", "Re_num", "S_hull_wetted", "x", "hull_perimeter", "hull_face_area", "buoyant_force_mass", "hull_face_area", "mass_total", "battery_mass", "solar_mass", "foam_mass", "mass_payload", "starlink_mass", "power", "F_drag", "C_f", "energy_req", "solar_area", "Fr_num", "battery_energy"]
     print_title("Results")
 
     # for var_name in vars_of_interest:

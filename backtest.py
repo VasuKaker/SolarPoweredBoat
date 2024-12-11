@@ -73,9 +73,10 @@ def plot_days(battery_energy_over_time, start_day, end_day):
     # Plot the data
     plt.figure(figsize=(12, 6))
     plt.plot(filtered_time, filtered_energy, label='Battery Energy (Wh)')
-    plt.title(f'Battery Energy Over Time (Days {start_day} to {end_day})')
-    plt.xlabel('Time (days)')
-    plt.ylabel('Battery Energy (Wh)')
+    plt.title(f'Battery Energy Over Time (Days {start_day} to {end_day})', fontsize=18)
+    plt.xlabel('Time (days)', fontsize=16)
+    plt.ylabel('Battery Energy (Wh)', fontsize=16)
+    plt.ylim(bottom=0)  # Set the y-axis to start at zero
     plt.grid(True)
     plt.legend()
     plt.show()
@@ -83,8 +84,25 @@ def plot_days(battery_energy_over_time, start_day, end_day):
 if __name__ == '__main__':
     df_solar = pd.read_csv('Boston_GHI.csv')
 
-    specifications = design.main(1.5, 2, 24, solar=True)
+    specifications = design.main(1.5, 6, 48, solar=True)
     print(specifications)
+
     battery_energy_over_time = main(specifications, df_solar)
 
-    plot_days(battery_energy_over_time, start_day=0, end_day=365)
+    plot_days(battery_energy_over_time, start_day=60, end_day=330)
+
+# if __name__ == '__main__':
+#     df_solar = pd.read_csv('Boston_GHI.csv')
+
+#     for a in range(20, 60, 1):
+#         for b in range(20, 60, 1):
+#             a_new = a / 10
+#             specifications = design.main(1.5, a_new, b, solar=True)
+
+#             L_val = specifications['L']
+#             battery_energy = specifications['energy_req']
+
+#             if abs(L_val - 2.25) < 0.1 and abs(battery_energy - 2100) < 100:
+#                 print(a_new, b)
+#                 battery_energy_over_time = main(specifications, df_solar)
+#                 plot_days(battery_energy_over_time, start_day=60, end_day=330)

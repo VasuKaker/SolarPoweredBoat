@@ -83,8 +83,8 @@ def plot_days(battery_energy_over_time, start_day, end_day):
 if __name__ == '__main__':
     df_solar = pd.read_csv('Boston_GHI.csv')
 
-    specifications = design.main(1.5, 4, 24, solar=True)
+    specifications = design.main(1.5, 2, 24, solar=True)
     print(specifications)
     battery_energy_over_time = main(specifications, df_solar)
 
-    plot_days(battery_energy_over_time, start_day=60, end_day=330)
+    plot_days(battery_energy_over_time, start_day=0, end_day=365)

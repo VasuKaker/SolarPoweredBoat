@@ -12,6 +12,7 @@ def main(boat_speed, hrs_sun, battery_hours, solar=True):
     pi = math.pi
     viscosity_water = 10**(-6) ### m^2 / s
     battery_specific_energy = 183 ### Wh / kg
+    mass_payload = 200
     
     ### VARIABLES
     L = 10*opti.variable()
@@ -88,7 +89,7 @@ def main(boat_speed, hrs_sun, battery_hours, solar=True):
     foam_mass = hull_face_area_total*p_foam*(0.5 + x)
 
     ### COMPUTE REQUIRED HEIGHT OF WETTED SURFACE AREA
-    mass_total = battery_mass + solar_mass + foam_mass + starlink_mass
+    mass_total = battery_mass + solar_mass + foam_mass + starlink_mass + mass_payload
     buoyant_force_mass = (p_water - p_foam) * (2 * hull_face_area) * x
 
     # (p_water - p_foam) * g * (2 * hull_face_area) * x = (battery_mass + solar_mass + foam_mass + starlink_mass) * g

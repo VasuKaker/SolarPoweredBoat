@@ -101,7 +101,7 @@ def main(boat_speed, hrs_sun, battery_hours, solar=True):
     ])
 
     opti.subject_to([
-        L/B > 2
+        L/B > 1
     ])
 
     if solar:
@@ -167,9 +167,15 @@ def main(boat_speed, hrs_sun, battery_hours, solar=True):
     cost_MPPT = 100
     cost_motors = 150
     cost_electronics = 200
+    cost_sensors = 200
 
-    total_cost = cost_battery * results_dict['battery_mass'] + cost_solar * results_dict['solar_area'] + cost_foam * V_foam + cost_starlink + cost_MPPT + cost_electronics
+    total_cost = cost_battery * results_dict['battery_mass'] + cost_solar * results_dict['solar_area'] + cost_foam * V_foam + cost_starlink + cost_MPPT + cost_electronics+ cost_sensors
     results_dict['total_cost'] = sol.value(total_cost)
+
+    results_dict["boat_speed"] = boat_speed
+    results_dict["hrs_sun"] = hrs_sun
+    results_dict["battery_hours"] = results_dict
+    results_dict["solar"] = solar
 
     return results_dict
 

@@ -12,7 +12,7 @@ def main(boat_speed, hrs_sun, battery_hours, solar=True):
     pi = math.pi
     viscosity_water = 10**(-6) ### m^2 / s
     battery_specific_energy = 183 ### Wh / kg
-    mass_payload = 0
+    mass_payload = 30000
     
     ### VARIABLES
     L = 10*opti.variable()
@@ -50,7 +50,7 @@ def main(boat_speed, hrs_sun, battery_hours, solar=True):
     ### F_drag
     F_drag = 0.5 * p_water * C_t * S_2hulls_wetted * (boat_speed**2) 
 
-    starlink_power = 25
+    starlink_power = 25 + 300
 
     ## POWER CONSTANTS
     eta_charging = 0.98
@@ -180,5 +180,5 @@ def main(boat_speed, hrs_sun, battery_hours, solar=True):
     return results_dict
 
 
-output = main(1.5, 2, 48, solar=True)
+output = main(5, 5, 10, solar=True)
 print(output)

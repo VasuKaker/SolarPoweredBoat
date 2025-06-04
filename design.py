@@ -12,7 +12,7 @@ def main(boat_speed, hrs_sun, battery_hours, solar=True):
     pi = math.pi
     viscosity_water = 10**(-6) ### m^2 / s
     battery_specific_energy = 183 ### Wh / kg
-    mass_payload = 30000
+    mass_payload = 0
     
     ### VARIABLES
     L = 10*opti.variable()
@@ -50,7 +50,8 @@ def main(boat_speed, hrs_sun, battery_hours, solar=True):
     ### F_drag
     F_drag = 0.5 * p_water * C_t * S_2hulls_wetted * (boat_speed**2) 
 
-    starlink_power = 25 + 300
+    starlink_power = 25
+    ROV_power = 300
 
     ## POWER CONSTANTS
     eta_charging = 0.98
@@ -59,7 +60,7 @@ def main(boat_speed, hrs_sun, battery_hours, solar=True):
     starlink_mass = 3 ### kg
 
     ### Power required
-    power = F_drag * boat_speed / eta_propulsion + starlink_power
+    power = F_drag * boat_speed / eta_propulsion + starlink_power + ROV_power
 
     solar_intensity = 1000 ### W/m^2, note that the average day in boston has 4.91 kWh / m2
     ### Nov/Dec/Jan/Feb have about 2 kWh / m2, summer months have 5 - 6 kWh/m2
@@ -164,12 +165,12 @@ def main(boat_speed, hrs_sun, battery_hours, solar=True):
     cost_solar = 200 ### $ / m2
     cost_foam = 35 ### $ / m3
     cost_starlink = 600 ### $
-    cost_MPPT = 100
-    cost_motors = 150
+    cost_MPPT = 300
+    cost_motors = 300
     cost_electronics = 200
     cost_sensors = 200
 
-    total_cost = cost_battery * results_dict['battery_mass'] + cost_solar * results_dict['solar_area'] + cost_foam * V_foam + cost_starlink + cost_MPPT + cost_electronics+ cost_sensors
+    total_cost = cost_battery * results_dict['battery_mass'] + cost_solar * results_dict['solar_area'] # + cost_foam * V_foam + cost_starlink + cost_MPPT + cost_electronics+ cost_sensors
     results_dict['total_cost'] = sol.value(total_cost)
 
     results_dict["boat_speed"] = boat_speed
@@ -180,5 +181,5 @@ def main(boat_speed, hrs_sun, battery_hours, solar=True):
     return results_dict
 
 
-output = main(5, 5, 10, solar=True)
-print(output)
+# output = main(1.5, 5, 40, solar=True)
+# print(output)
